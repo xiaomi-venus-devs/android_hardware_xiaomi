@@ -219,6 +219,9 @@ Return<RequestStatus> BiometricsFingerprint::enroll(const hidl_array<uint8_t, 69
 }
 
 Return<RequestStatus> BiometricsFingerprint::postEnroll() {
+    if (mUdfpsHandler) {
+        mUdfpsHandler->postEnroll();
+    }
     return ErrorFilter(mDevice->post_enroll(mDevice));
 }
 
